@@ -6,7 +6,7 @@ import { RecentlyviewedData } from "@/constant/SearchBox/Recentlyviewed";
 
 const SearchBox = ({ handleSearch }) => {
   return (
-    <div className="text-black w-full ">
+    <div className="text-black w-full h-[95vh]">
       <div className="w-full h-30 flex flex-row-reverse lg:flex-row items-center gap-5 bg-[#F6F7F8] px-10">
         <div className="w-full h-14 relative">
           <input
