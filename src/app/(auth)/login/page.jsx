@@ -1,6 +1,7 @@
+
 const Page = () => {
   return (
-    <div className=''>Login Page</div>
+   <div>Login</div>
   )
 }
 
