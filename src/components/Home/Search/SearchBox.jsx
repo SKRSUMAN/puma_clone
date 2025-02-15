@@ -16,7 +16,6 @@ const SearchBox = ({ handleSearch }) => {
           />
           <div className="absolute p-[5px] right-2 h-11 w-11 top-[8px]  hover:bg-[#c2c2c2] hover:rounded-full cursor-pointer flex items-center justify-center">
             <SearchIcon
-              className=""
               sx={{
                 fontSize: "27px",
               }}
