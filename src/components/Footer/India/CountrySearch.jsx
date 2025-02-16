@@ -10,10 +10,13 @@ const CountrySearch = ({ handleCountry }) => {
     <div className="w-full h-[90vh] flex flex-col gap-5 ">
       <div className="flex justify-between items-center">
         <h1 className="font-bold">Location Selector</h1>
+        <div>
         <RxCross2
           onClick={handleCountry}
-          className="text-[45px] cursor-pointer p-2"
+          className="text-[40px] cursor-pointer p-2 rounded-full hover:bg-[#c2c1c1]"
         />
+        </div>
+        
       </div>
       <div className="relative w-full">
         <input

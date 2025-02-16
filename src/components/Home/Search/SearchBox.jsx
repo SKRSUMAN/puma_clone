@@ -70,9 +70,9 @@ const SearchBox = ({ handleSearch }) => {
                   className="w-full h-auto rounded-md"
                 />
               </div>
-              <div className="grid col-span-3 lg:col-span-2 py-2">
-                <div className="text-[16px] font-semibold flex items-center w-full">
-                  <h2 className="hover:border-b-2 hover:border-black leading-none">
+              <div className="grid col-span-3 lg:col-span-3 py-3 cursor-pointer">
+                <div className="text-[16px] font-semibold flex items-center w-full pb-2 ">
+                <h2 className="border-b-2 border-transparent hover:border-black leading-none ">
                     {items.name}
                   </h2>
                 </div>
