@@ -10,16 +10,30 @@ import SearchIcon from "@mui/icons-material/Search";
 import ElectricBoltIcon from "@mui/icons-material/ElectricBolt";
 import Link from "next/link";
 import SearchBox from "@/components/Home/Search/SearchBox";
+import DropdownMenu from "@/components/Navbar/DropdownMenu";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
+  const [show, setShow] = useState(null);
 
   const handleSearch = () => {
     setSearch(!search);
   };
 
+  const menuItems = [
+    { name: "New", href: "/new", icon: <ElectricBoltIcon style={{ color: "#FFC83D", fontSize: "22px", paddingLeft: "2px" }} /> },
+    { name: "Men", href: "/men" },
+    { name: "Women", href: "/women" },
+    { name: "Sports", href: "/sports" },
+    { name: "Motorsports", href: "/motorsports" },
+    { name: "Collaborations", href: "/collaborations" },
+    { name: "Kids", href: "/kids" },
+    { name: "Outlet", href: "/outlet" },
+  ];
+
   return (
     <nav className="relative bg-[#181818] text-white w-full h-20 flex justify-between items-center px-4 lg:px-10">
+
       <div className="lg:hidden flex gap-5">
         <Link href="/" className="text-white">
           <IoMenu size={30} />
@@ -35,34 +49,30 @@ const Navbar = () => {
         </Link>
       </div>
 
-      <div className="hidden lg:flex items-center space-x-5 font-bold hover:text-[#918e8e]">
+
+      <div className="hidden lg:flex items-center space-x-5 font-bold">
         <Link href="/" className="text-white">
           <SiPuma size={34} />
         </Link>
-        {[
-          {
-            name: "New",
-            href: "/new",
-            icon: (
-              <ElectricBoltIcon
-                sx={{ color: "#FFC83D", fontSize: "22px", paddingLeft: "2px" }}
-              />
-            ),
-          },
-          { name: "Men", href: "/men" },
-          { name: "Women", href: "/women" },
-          { name: "Sports", href: "/sports" },
-          { name: "Motorsports", href: "/motorsports" },
-          { name: "Collaborations", href: "/collaborations" },
-          { name: "Kids", href: "/kids" },
-          { name: "Outlet", href: "/outlet" },
-        ].map((item) => (
-          <Link
+
+        <DropdownMenu show={show} setShow={setShow} />
+
+        {menuItems.map((item) => (
+          <div
             key={item.name}
-            href={item.href}
-            className="hover:border-[#8A7350] hover:border-b-2 hover:text-white transition text-[16px]">
-            {item.name} {item.icon && <span>{item.icon}</span>}
-          </Link>
+            onMouseEnter={() => setShow(item.name)}
+            onMouseLeave={() => setShow(null)}
+            className="relative h-20 flex items-center"
+          >
+            <Link
+              href={item.href}
+              className="hover:border-[#8A7350] hover:border-b-2 hover:text-white transition text-[16px]"
+            >
+              {item.name} {item.icon && <span>{item.icon}</span>}
+            </Link>
+            <div>
+            </div>
+          </div>
         ))}
       </div>
 
@@ -71,7 +81,8 @@ const Navbar = () => {
           <div className="relative border border-text-[#6F4F4F]">
             <button
               onClick={handleSearch}
-              className="flex items-center gap-2 px-4 py-2 cursor-pointer">
+              className="flex items-center gap-2 px-4 py-2 cursor-pointer"
+            >
               <SearchIcon className="text-white" />
               <p>SEARCH</p>
             </button>
@@ -92,6 +103,7 @@ const Navbar = () => {
           </button>
         </div>
       </div>
+
       <Drawer anchor="top" open={search} onClose={handleSearch}>
         <div className="text-black w-full bg-white">
           <SearchBox handleSearch={handleSearch} />
