@@ -7,7 +7,7 @@ import { data } from "autoprefixer";
 
 const CountrySearch = ({ handleCountry }) => {
   return (
-    <div className="w-full h-[90vh] md:h-[85vh] lg:h-[91vh] flex flex-col gap-5 ">
+    <div className="w-full h-[90vh] md:h-[85vh] lg:h-[88vh] flex flex-col gap-5 ">
       <div className="flex justify-between items-center">
         <h1 className="font-bold">Location Selector</h1>
         <div>
