@@ -160,11 +160,20 @@ const Footer = () => {
         onClose={handelCountry}
         sx={{
           "& .MuiDrawer-paper": {
-            width: "25%",
+            width: "90%",
             height: "auto",
             margin: "0 auto",
-            borderRadius: "10px 10px 0 0",
-            padding: "15px",
+            borderRadius: "5px 5px 0 0",
+            padding: "25px",
+            "@media (min-width:600px)": { 
+        width: "75%",
+      },
+      "@media (min-width:900px)": { 
+        width: "50%",
+      },
+      "@media (min-width:1200px)": { 
+        width: "30%",
+      },
           },
         }}>
         <div className="text-black bg-white w-full m-auto">

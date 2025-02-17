@@ -7,7 +7,7 @@ import { data } from "autoprefixer";
 
 const CountrySearch = ({ handleCountry }) => {
   return (
-    <div className="w-full h-[90vh] flex flex-col gap-5 ">
+    <div className="w-full h-[90vh] md:h-[85vh] lg:h-[91vh] flex flex-col gap-5 ">
       <div className="flex justify-between items-center">
         <h1 className="font-bold">Location Selector</h1>
         <div>
@@ -32,7 +32,7 @@ const CountrySearch = ({ handleCountry }) => {
         {CountryFlagDatas.map((datas, index) => (
           <div
             key={index}
-            className="flex justify-between items-center border-b pb-3">
+            className="flex justify-between items-center border-b pb-3 border-[#d5d0d0]">
             <div className="">
               <Link
                 href={datas.href}
@@ -48,7 +48,7 @@ const CountrySearch = ({ handleCountry }) => {
             </div>
             <div className="flex gap-1">
               {datas.language.map((lang, index) => (
-                <p key={index} className="border-b leading-3 cursor-pointer text-[12px]">
+                <p key={index} className="border-b leading-3 cursor-pointer text-[12px] border-[#585858]">
                   {lang}
                   {index !== datas.language.length - 1 ? "," : ""}
                 </p>
