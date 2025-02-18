@@ -64,13 +64,13 @@ const Footer = () => {
               <h1 className="text-[18px] font-bold">
                 {"Stay up to date".toUpperCase()}
               </h1>
-              <div className="flex gap-5 items-center">
+              <div className="flex gap-6 items-center">
                 {SocialMediaDatas.map((data, index) => (
                   <Link
                     href={data.href}
                     key={index}
-                    className="w-11 h-11 flex flex-col items-center justify-center rounded-full cursor-pointer hover:border-white hover:bg-[#404040]">
-                    <p className="p-5">{data.img}</p>
+                    className="w-10 h-10 flex flex-col items-center justify-center rounded-full cursor-pointer hover:border-white hover:bg-[#404040]">
+                   {data.img}
                   </Link>
                 ))}
               </div>

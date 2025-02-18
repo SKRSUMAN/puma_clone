@@ -32,8 +32,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="relative bg-[#181818] text-white w-full h-20 flex justify-between items-center px-4 lg:px-10">
-
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#181818] text-white w-full h-20 flex justify-between items-center px-4 lg:px-10">
       <div className="lg:hidden flex gap-5">
         <Link href="/" className="text-white">
           <IoMenu size={30} />
@@ -48,7 +47,6 @@ const Navbar = () => {
           <SiPuma size={44} />
         </Link>
       </div>
-
 
       <div className="hidden lg:flex items-center space-x-5 font-bold">
         <Link href="/" className="text-white">
@@ -70,8 +68,6 @@ const Navbar = () => {
             >
               {item.name} {item.icon && <span>{item.icon}</span>}
             </Link>
-            <div>
-            </div>
           </div>
         ))}
       </div>

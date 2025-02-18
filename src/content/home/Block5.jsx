@@ -1,6 +1,6 @@
 const Block5 = () => {
   return (
-    <div className="w-full flex flex-col gap-5 mt-10 mb-5">
+    <div className="w-full flex flex-col gap-5 mt-5 ">
       <div className="md:px-8 px-4 flex items-center justify-center">
         <h1 className="md:text-[21px] text-[15px] md:font-bold font-semibold text-black">
           YOUR FAVOURITE TEAMS ARE BACK

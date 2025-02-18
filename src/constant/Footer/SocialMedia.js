@@ -5,26 +5,26 @@ export const SocialMediaDatas =[
     {
         icon:"Youtube",
         href:"/youtube",
-        img:<FaYoutube className="w-6 h-6" />
+        img:<FaYoutube className="w-7 h-7" />
     },
     {
         icon:"Twitter",
         href:"/twitter",
-        img:<FaXTwitter className="w-6 h-6"/>
+        img:<FaXTwitter className="w-7 h-7"/>
     },
     {
         icon:"Pinterest",
         href:"/pinterest",
-        img:<FaPinterest className="w-6 h-6" />
+        img:<FaPinterest className="w-7 h-7" />
     },
     {
         icon:"Instagram",
         href:"/instagram",
-        img:<FaInstagram className="w-6 h-6" />
+        img:<FaInstagram className="w-7 h-7" />
     },
     {
         icon:"facebook",
         href:"/facebook",
-        img:<FaFacebook className="w-6 h-6"/>
+        img:<FaFacebook className="w-7 h-7"/>
     },
 ]

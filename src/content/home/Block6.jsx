@@ -4,9 +4,9 @@ import Link from "next/link";
 
 const Block6 = () => {
     return (
-      <div className="w-full flex flex-col px-10 my-5">
-        <div className="py-10">
-          <h1 className="text-[25px] font-bold text-black">ELEVATE YOUR STYLE</h1>
+      <div className="w-full flex flex-col px-10">
+        <div className="py-8 w-full">
+          <h1 className="sm:text-[25px] text-[20px] font-bold text-black">ELEVATE YOUR STYLE</h1>
         </div>
         <div className="w-full flex gap-5 items-center overflow-x-auto md:overflow-x-hidden justify-start">
           {Block6Datas.map((item, index) => (
