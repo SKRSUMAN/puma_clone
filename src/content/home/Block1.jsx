@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Block1 = () => {
   return (
-    <div className="w-full lg:px-15 px-5 lg:py-5 py-10 my-10 ">
+    <div className="w-full lg:px-15 px-5 lg:py-5 py-2 md:my-10 ">
       <div className="flex lg:flex-nowrap justify-start gap-5 overflow-x-auto">
         {Block1Datas.map((items, index) => (
           <Link
