@@ -6,13 +6,12 @@ const Block2 = () => {
       <div
         className="
          w-full min-h-[500px] sm:h-[550px]
-          bg-no-repeat bg-center
+          bg-no-repeat
           flex flex-col gap-5 justify-center
-          px-0 sm:px-16
           cursor-pointer
           bg-[url('/Images/Home/Block2/mobile_Size6c88a79973162367fec53b4a9a0e2b55e015dff4.avif')]
           sm:bg-[url('/Images/Home/Block2/d68e8c58e7bcdeb121a389db543ebd052336edac.jpeg')]
-          bg-contain sm:bg-cover
+          bg-contain sm:bg-cover px-6 sm:px-12
         "
       >
         <div className="hidden sm:block">
