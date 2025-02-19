@@ -17,7 +17,7 @@ const Swipers = () => {
         spaceBetween={20}
         navigation={true}
         mousewheel={{ forceToAxis: true }}
-        className="!mySwiper !static sm:h-[65vh] md:h-[50vh] lg:h-[60vh] md:min-h-[400px] z-[-20] h-[60vh] "
+        className="!mySwiper !static sm:h-[65vh] md:h-[50vh] lg:h-[60vh] md:min-h-[400px] z-[-20] h-[40vh] "
         scrollbar={{ draggable: true }}
         modules={[Scrollbar, Navigation,Mousewheel]}
         breakpoints={{
@@ -101,6 +101,13 @@ const Swipers = () => {
     cursor: auto;
     pointer-events: none;
 }
+         /* Hide navigation on small screens */
+        @media (max-width: 768px) {
+          :global(.swiper-button-prev),
+          :global(.swiper-button-next) {
+            display: none !important;
+          }
+        }
       `}</style>
     </div>
   );
