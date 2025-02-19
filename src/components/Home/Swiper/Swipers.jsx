@@ -30,7 +30,7 @@ const Swipers = () => {
       >
         {HotWeelsDatas.map((item, index) => (
           <SwiperSlide key={index}>
-            <div className="text-center flex flex-col gap-4 w-full max-w-xs mx-auto">
+            <div className="text-center flex flex-col gap-4 w-full max-w-xs mx-auto cursor-pointer">
               <img
                 src={item.img}
                 alt={item.title}
