@@ -32,7 +32,7 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#181818] text-white w-full h-20 flex justify-between items-center px-4 lg:px-10">
+    <nav className="sticky top-0 left-0 right-0 z-[1000] bg-[#181818] text-white w-full h-20 flex justify-between items-center px-4 lg:px-10">
       <div className="lg:hidden flex gap-5">
         <Link href="/" className="text-white">
           <IoMenu size={30} />

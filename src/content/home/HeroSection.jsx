@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const HeroSection = () => {
   return (
-    <div className="w-full h-auto flex justify-center items-center py-10 px-5 mt-[75px]">
+    <div className="w-full h-auto flex justify-center items-center py-10 px-5">
       <div className="grid grid-cols-3 gap-5 w-full max-w-[1400px]">
         {heroSectionDatas.map((item, index) => (
           <div key={index} className="relative">
