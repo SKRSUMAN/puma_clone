@@ -9,6 +9,7 @@ import { Drawer } from "@mui/material";
 import { RxCross2 } from "react-icons/rx";
 import FilterAccordian from "@/components/Products/FilterAccordian";
 import AccordianFooter from "@/components/Footer/FooterAccordian/AccordianFooter";
+import Cards from "@/components/Products/Cards";
 
 const page = () => {
   const [open, setOpen] = React.useState(false);
@@ -19,7 +20,7 @@ const page = () => {
   };
 
   return (
-    <div className="w-full flex flex-col px-12 py-8 gap-5 relative">
+    <div className="w-full flex flex-col px-10 py-8 gap-5 relative">
       <div className="flex items-center gap-5 text-sm ">
         <ul>
           <li className="text-[18px] font-bold">Home</li>
@@ -87,7 +88,7 @@ const page = () => {
           <select
             value={sortOption}
             onChange={(e) => setSortOption(e.target.value)}
-            className="px-2 py-2 border w-[120px] border-[#B2B2B2] hover:border-black text-[16px] font-bold cursor-pointer appearance-none"
+            className="px-2 py-2 border w-[130px] border-[#B2B2B2] hover:border-black text-[16px] font-bold cursor-pointer appearance-none"
           >
             <option value="" disabled>
               SORT BY
@@ -121,7 +122,9 @@ const page = () => {
         </div>
       </div>
 
-      <div>sdfdf</div>
+      <div>
+        <Cards/>
+      </div>
     </div>
   );
 };
