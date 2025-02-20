@@ -17,3 +17,21 @@ body {
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.MuiAccordionSummary-gutters {
+  padding: 0px !important;
+}
+
+/* .css-19uvxup-MuiAccordionDetails-root{
+ 
+  border-bottom: 0px !important;
+} */
+
+.css-8m03fb-MuiAccordionDetails-root {
+  padding: 0px !important;
+  padding-bottom: 16px;
+}
+
+.css-xvk2i-MuiSlider-track{
+  border: none !important;
+}
