@@ -12,6 +12,7 @@ import AccordianFooter from "@/components/Footer/FooterAccordian/AccordianFooter
 
 const page = () => {
   const [open, setOpen] = React.useState(false);
+  const [sortOption, setSortOption] = React.useState(""); 
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -41,7 +42,8 @@ const page = () => {
         <div className="px-5 py-2 border flex gap-2 items-center border-[#B2B2B2] hover:border-black cursor-pointer">
           <button
             onClick={toggleDrawer(true)}
-            className="text-[16px] font-bold cursor-pointer">
+            className="text-[16px] font-bold cursor-pointer"
+          >
             FILTERS
           </button>
           <Drawer
@@ -49,7 +51,8 @@ const page = () => {
             onClose={toggleDrawer(false)}
             PaperProps={{
               sx: { width: "28vw" },
-            }}>
+            }}
+          >
             <div className="p-5 flex flex-col w-full gap-5">
               <div className="w-full flex justify-between items-center">
                 <div className="text-[20px] font-bold">Products Filters</div>
@@ -64,27 +67,42 @@ const page = () => {
                 <div className="border-b absolute left-[-20px] right-[-20px] top-0 text-[#B2B2B2]"></div>
               </div>
               <div className="w-full">
-             < FilterAccordian/>
-            </div>
-            <div className="">
+                <FilterAccordian />
+              </div>
+              <div className="">
                 <div>
-                  <button className="w-full h-15 bg-black text-white text-[20px] cursor-pointer hover:bg-[#FFDFB7] font-bold">SHOW 4118 PRODUCTS</button>
+                  <button className="w-full h-15 bg-black text-white text-[20px] cursor-pointer hover:bg-[#FFDFB7] font-bold">
+                    SHOW 4118 PRODUCTS
+                  </button>
                 </div>
               </div>
             </div>
-            
           </Drawer>
           <div className="cursor-pointer">
             <VscSettings className="text-[25px]" />
           </div>
         </div>
-        <div className="px-5 py-2 border flex gap-2 items-center cursor-pointer border-[#B2B2B2] hover:border-black">
-          <div className="text-[16px] font-bold">SORT BY</div>
-          <div>
-            <RiArrowDownSLine className="text-[25px]" />
-          </div>
+
+        <div className="relative">
+          <select
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="px-2 py-2 border w-[120px] border-[#B2B2B2] hover:border-black text-[16px] font-bold cursor-pointer appearance-none"
+          >
+            <option value="" disabled>
+              SORT BY
+            </option>
+            <option value="discount-high-low">Discount High To Low</option>
+            <option value="best-matches">Best Matches</option>
+            <option value="top-sellers">Top Sellers</option>
+            <option value="price-low-high">Price Low To High</option>
+            <option value="price-high-low">Price High To Low</option>
+            <option value="newest">Newest</option>
+          </select>
+          <RiArrowDownSLine className="absolute right-3 top-1/2 transform -translate-y-1/2 text-[25px]" />
         </div>
       </div>
+
       <div className="relative">
         <div className="border-b absolute left-[-50px] right-[-48px] top-0 text-[#B2B2B2]"></div>
       </div>
