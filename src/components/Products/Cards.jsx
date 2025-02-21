@@ -6,7 +6,7 @@ const Cards = () => {
     <div className="w-full">
       <div className="grid grid-cols-2 gap-4 sm:gap-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-5">
         {CardDatas.map((item, index) => (
-          <div key={index} className="flex flex-col overflow-hidden ">
+          <div key={index} className="flex flex-col overflow-hidden cursor-pointer ">
             <div className="relative aspect-square w-full">
               <Image
                 src={item.img}
