@@ -121,7 +121,7 @@ const Page = () => {
                 <div className="text-[15px] font-se">ONLY 5 LEFT</div>
               </div>
 
-              <div className="grid grid-cols-8 place-items-start gap-10">
+              <div className="flex flex-wrap gap-2 w-full justify-start">
                 <div className="border w-[60px] h-[55px] flex items-center justify-center  border-[#dfe0e1] cursor-pointer rounded-[2px]">
                   UK 5
                 </div>
@@ -237,7 +237,10 @@ const Page = () => {
                     className="w-83 h-15 px-4 border border-[#191919] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-gray-500"
                   />
                 </div>
-                <div className="border w-33 h-15 flex items-center justify-center bg-[#191919] font-bold text-white text-[18px] rounded-[2px] hover:bg-[#3b4047]"> CHECK </div>
+                <div className="border w-33 h-15 flex items-center justify-center bg-[#191919] font-bold text-white text-[18px] rounded-[2px] hover:bg-[#3b4047]">
+                  {" "}
+                  CHECK{" "}
+                </div>
               </div>
             </div>
 
@@ -245,17 +248,23 @@ const Page = () => {
 
             <div className="flex flex-col gap-2">
               <div className="font-bold text-[18px]">Description</div>
-              <div className="text-[16px] text-[#191919c1]">The PUMA Easy Rider was born in the late '70s, when running made its move from the track to the streets. Today it's back with</div>
+              <div className="text-[16px] text-[#191919c1]">
+                The PUMA Easy Rider was born in the late '70s, when running made
+                its move from the track to the streets. Today it's back with
+              </div>
               <div>
                 <div></div>
                 <div></div>
               </div>
-              <div className="text-[15px] font-bold leadi-8 border-b-2">READ MORE </div>
+              <div className="">
+                <button
+                  className="text-[15px] font-bold leading-4 border-b-2 cursor-pointer">
+                  READ MORE
+                </button>
+              </div>
             </div>
 
-
-
-
+            <div>asdfdfa</div>
           </div>
         </div>
       </div>
