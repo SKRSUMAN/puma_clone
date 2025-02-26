@@ -253,18 +253,26 @@ const Page = () => {
                 its move from the track to the streets. Today it's back with
               </div>
               <div>
-                <div></div>
-                <div></div>
+                <ul class="list-disc pl-5">
+                  <li>Style: 399029_02</li>
+                  <li>Color: PUMA White-Frosted Ivory</li>
+                </ul>
+              </div>
+
+              <div>
               </div>
               <div className="">
-                <button
-                  className="text-[15px] font-bold leading-4 border-b-2 cursor-pointer">
+                <button className="text-[15px] font-bold leading-4 border-b-2 cursor-pointer">
                   READ MORE
                 </button>
               </div>
             </div>
 
-            <div>asdfdfa</div>
+            <div className="flex flex-col gap-5">
+              <div className="text-xl font-bold">Shipping and Returns</div>
+              <div className="text-[16px] font-normal text-[#191919]">Free return on all qualifying orders within 14 days of your order delivery date. Visit our <span className="border-b-2 leading-5 cursor-pointer border-grey-500 hover:border-[#d1c3af]">Return Policy</span> for more information.</div>
+              <div className="text-[16px] font-normal text-[#191919]">For any queries, please contact Customer Service on email at <span className="border-b-2 leading-5 cursor-pointer border-grey-500 hover:border-[#d1c3af]" >customercareindia@puma.com</span> , or send us a "Hi" on Whatsapp at 6364929121.</div>
+            </div>
           </div>
         </div>
       </div>
