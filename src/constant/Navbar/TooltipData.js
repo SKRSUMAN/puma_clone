@@ -1,15 +1,15 @@
 export const TooltipDatas = [
     {
         title:"My Account",
-        href:"/"
+        href:"/signup"
     },
     {
         title:"Wishlist",
-        href:"/"
+        href:"/signup"
     },
     {
         title:"Check Order/Initiate Return",
-        href:"/"
+        href:"/signup"
     },
     {
         title:"Store Finder",

@@ -18,9 +18,11 @@ const Navbar = () => {
   const [show, setShow] = useState(null);
   const [open, setOpen] = useState(false);
 
-  const handleClick = () => {
-    setOpen((prev) => !prev);
+  const handleToggle = () => {
+    setOpen((prev) => !prev); // Toggle open/close state
   };
+
+  const handleClose = () => setOpen(false);
 
   const handleSearch = () => {
     setSearch(!search);
@@ -106,70 +108,70 @@ const Navbar = () => {
             </Badge>
           </button>
           <Tooltip
-  title={
-    <div className="w-full flex flex-col gap-3">
-      {TooltipDatas.map((items, index) => (
-        <div key={index}>
-          {/* Row content: Title + Optional Language */}
-          <div className="text-lg sm:text-base flex justify-between items-center cursor-pointer">
-            <Link href={items.href}>{items.title}</Link>
+      title={
+        <div 
+          className="w-full flex flex-col gap-3" 
+          onMouseDown={(e) => e.stopPropagation()} // Prevents closing on inside click
+        >
+          {TooltipDatas.map((item, index) => (
+            <div key={index}>
+              <div className="text-lg sm:text-base flex justify-between items-center cursor-pointer">
+                <Link href={item.href}>{item.title}</Link>
+                {item.title === "Language" && (
+                  <span className="flex items-center gap-1">
+                    EN
+                    <img
+                      src="/flag-for-india-svgrepo-com.svg"
+                      alt="India Flag"
+                      className="w-7 h-7 sm:w-5 sm:h-5"
+                    />
+                  </span>
+                )}
+              </div>
+              {index !== TooltipDatas.length - 1 && (
+                <div className="border-b border-[#babdc1] mt-2"></div>
+              )}
+            </div>
+          ))}
 
-            {items.title === "Language" && (
-              <span className="flex items-center gap-1">
-                EN
-                <img
-                  src="/flag-for-india-svgrepo-com.svg"
-                  alt="India Flag"
-                  className="w-7 h-7 sm:w-5 sm:h-5"
-                />
-              </span>
-            )}
+          <div className="flex flex-col gap-3 mt-3">
+            <button className="border text-[16px] sm:text-[14px] bg-[#000000] hover:bg-[#3b4047] text-white py-3 sm:py-2 cursor-pointer">
+              LOGIN
+            </button>
+            <button className="border text-[16px] sm:text-[14px] py-3 sm:py-2 cursor-pointer">
+              JOIN US
+            </button>
           </div>
-
-          {/* Add border ONLY if not the last item */}
-          {index !== TooltipDatas.length - 1 && (
-            <div className="border-b border-[#babdc1] mt-2"></div>
-          )}
         </div>
-      ))}
+      }
+      arrow
+      open={open}
+      onClose={handleToggle}
+      componentsProps={{
+        tooltip: {
+          style: {
+            backgroundColor: "white",
+            color: "black",
+            fontSize: "14px",
+            padding: "15px 20px",
+            borderRadius: "6px",
+            minWidth: "360px",
+            maxWidth: "90vw",
+          },
+        },
+        arrow: {
+          style: { color: "white" },
+        },
+      }}
+    >
+      <button
+        onClick={handleToggle}
+        className="cursor-pointer border border-transparent rounded-full transition-all p-3 sm:p-2 hover:bg-[#404040] flex items-center"
+      >
+        <PersonIcon fontSize="medium" />
+      </button>
+    </Tooltip>
 
-      <div className="flex flex-col gap-3 mt-3">
-        <button className="border text-[16px] sm:text-[14px] bg-[#000000] hover:bg-[#3b4047] text-white py-3 sm:py-2 cursor-pointer">
-          LOGIN
-        </button>
-        <button className="border text-[16px] sm:text-[14px] py-3 sm:py-2 cursor-pointer">
-          JOIN US
-        </button>
-      </div>
-    </div>
-  }
-  arrow
-  open={open}
-  onClose={handleClick}
-  componentsProps={{
-    tooltip: {
-      style: {
-        backgroundColor: "white",
-        color: "black",
-        fontSize: "14px",
-        padding: "15px 20px",
-        borderRadius: "6px",
-        minWidth: "360px", // Default width
-        maxWidth: "90vw",  // Adjust width for smaller screens
-      },
-    },
-    arrow: {
-      style: { color: "white" },
-    },
-  }}
->
-  <button
-    onClick={handleClick}
-    className="cursor-pointer border border-transparent rounded-full transition-all p-3 sm:p-2 hover:bg-[#404040] flex items-center"
-  >
-    <PersonIcon fontSize="medium" />
-  </button>
-</Tooltip>
 
 
 
