@@ -12,7 +12,7 @@ import { HotWeelsDatas } from "@/constant/Home/Block9Data";
 
 const Swipers = () => {
   return (
-    <div className="relative border px-2">
+    <div className="relative px-2">
       <Swiper
         spaceBetween={20}
         navigation={true}
