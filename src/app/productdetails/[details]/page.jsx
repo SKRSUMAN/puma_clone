@@ -15,6 +15,16 @@ const Page = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedQty, setSelectedQty] = useState(1);
   const [hoverQty, setHoverQty] = useState(1);
+  const [selectedImageIndex, setSelectedImageIndex] = useState(0);
+
+  const handleImageClick = (index) => {
+    setSelectedImageIndex(index);
+  };
+
+  const images = [
+    "/Images/Products/cards/Easy-Rider-Leather-Unisex-Sneakers (6).jpeg",
+    "/Images/Products/cards/Easy-Rider-Mesh-Unisex-Sneakers.jpeg",
+  ];
 
   const handleSelect = (qty) => {
     console.log("Selected Quantity:", qty);
@@ -55,7 +65,7 @@ const Page = () => {
           </span>
         ))}
       </div>
-      <div className="grid grid-cols-12 gap-5 relative">
+      <div className="grid md:grid-cols-12 grid-cols-1  gap-5 relative">
         {/* left */}
         <div className="col-span-8 h-full overflow-auto">
           <Photos />
@@ -89,28 +99,24 @@ const Page = () => {
                 </div>
               </div>
               <div className="flex gap-2 items-center">
-                <div className="w-[60px] h-[60px]">
-                  <div className="border rotate-y-180">
+                {images.map((img, index) => (
+                  <div
+                    key={index}
+                    className={`w-[60px] h-[60px] cursor-pointer p-1 ${
+                      selectedImageIndex === index
+                        ? "border-2 border-black"
+                        : "border border-gray-300"
+                    } rounded-md`}
+                    onClick={() => handleImageClick(index)}>
                     <Image
-                      src="/Images/Products/cards/Easy-Rider-Leather-Unisex-Sneakers (6).jpeg"
-                      alt="puma image"
+                      src={img}
+                      alt="Puma image"
                       width={60}
                       height={50}
                       objectFit="cover"
                     />
                   </div>
-                </div>
-                <div>
-                  <div className="">
-                    <Image
-                      src="/Images/Products/cards/Easy-Rider-Mesh-Unisex-Sneakers.jpeg"
-                      alt="puma image"
-                      width={60}
-                      height={50}
-                      objectFit="cover"
-                    />
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
@@ -234,19 +240,18 @@ const Page = () => {
 
             <div>Please enter PIN code to check delivery time</div>
 
-            <div className="flex flex-col gap-2">
-              <div className="font-bold text-[14px]">PIN CODE</div>
-              <div className="flex w-full justify-between">
-                <div className="">
-                  <input
-                    type="text"
-                    placeholder="PIN Code"
-                    className="w-83 h-15 px-4 border border-[#191919] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-gray-500"
-                  />
-                </div>
-                <div className="border w-33 h-15 flex items-center justify-center bg-[#191919] font-bold text-white text-[18px] rounded-[2px] cursor-pointer hover:bg-[#3b4047]">
-                  {" "}
-                  CHECK{" "}
+            <div className="flex flex-col gap-2 w-full max-w-md">
+              <label className="font-bold text-sm md:text-base">PIN CODE</label>
+              <div className="flex flex-col sm:flex-col lg:flex-row w-full gap-2">
+                <input
+                  type="text"
+                  placeholder="PIN code"
+                  className="w-full h-10 px-4 border border-gray-900 rounded-sm focus:outline-none focus:ring-2 focus:ring-gray-500 lg:flex-1"
+                />
+                <div className="flex justify-end w-full lg:w-auto">
+                  <button className="h-10 px-4 bg-black font-bold text-white text-sm rounded-sm cursor-pointer hover:bg-gray-800">
+                    CHECK
+                  </button>
                 </div>
               </div>
             </div>
@@ -302,7 +307,7 @@ const Page = () => {
         </div>
       </div>
       <div>
-        <ProductStory/>
+        <ProductStory />
       </div>
     </div>
   );
