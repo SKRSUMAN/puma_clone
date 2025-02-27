@@ -8,6 +8,8 @@ import { IoChevronDownSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { FaArrowRotateRight, FaTruckFast } from "react-icons/fa6";
 import Photos from "@/components/productDetails/Photos";
+import Swipers from "@/components/Home/Swiper/Swipers";
+import ProductStory from "@/components/productDetails/ProductStory";
 
 const Page = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,13 +55,14 @@ const Page = () => {
           </span>
         ))}
       </div>
-
-      <div className="grid grid-cols-12 gap-5">
-        <div className="col-span-8 ">
+      <div className="grid grid-cols-12 gap-5 relative">
+        {/* left */}
+        <div className="col-span-8 h-full overflow-auto">
           <Photos />
         </div>
 
-        <div className="col-span-4 mt-2">
+        {/* right  */}
+        <div className="col-span-4 mt-2 h-fit sticky top-20">
           <div className=" flex flex-col gap-5">
             <div className="flex flex-col gap-3">
               <div className="text-[30px] font-bold leading-9">
@@ -257,7 +260,7 @@ const Page = () => {
                 its move from the track to the streets. Today it's back with
               </div>
               <div>
-                <ul class="list-disc pl-5">
+                <ul className="list-disc pl-5">
                   <li>Style: 399029_02</li>
                   <li>Color: PUMA White-Frosted Ivory</li>
                 </ul>
@@ -291,6 +294,15 @@ const Page = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="flex flex-col gap-5 my-5">
+        <div className="text-2xl font-bold">SEE SIMILAR</div>
+        <div>
+          <Swipers />
+        </div>
+      </div>
+      <div>
+        <ProductStory/>
       </div>
     </div>
   );
