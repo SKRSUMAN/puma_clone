@@ -12,7 +12,7 @@ import { HotWeelsDatas } from "@/constant/Home/Block9Data";
 
 const Swipers = () => {
   return (
-    <div className="relative">
+    <div className="relative border px-2">
       <Swiper
         spaceBetween={20}
         navigation={true}
@@ -64,7 +64,7 @@ const Swipers = () => {
         }
 
         :global(.swiper-button-prev) {
-          left: -20px !important;
+          left: -10px !important;
         }
 
         :global(.swiper-button-next) {

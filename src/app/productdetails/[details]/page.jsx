@@ -44,7 +44,7 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full px-10 py-10 flex flex-col gap-5">
+    <div className="w-full lg:px-10 px-3 py-10 flex flex-col gap-5">
       <div className="w-full">
         {NavigationDatass.map((item, index) => (
           <span key={index}>
@@ -65,14 +65,14 @@ const Page = () => {
           </span>
         ))}
       </div>
-      <div className="grid md:grid-cols-12 grid-cols-1  gap-5 relative">
+      <div className="grid md:grid-cols-12 grid-cols-1 gap-5 relative w-full ">
         {/* left */}
-        <div className="col-span-8 h-full overflow-auto">
+        <div className="w-full lg:col-span-8 md:col-span-12 col-span-8 h-full overflow-auto">
           <Photos />
         </div>
 
         {/* right  */}
-        <div className="col-span-4 mt-2 h-fit sticky top-20">
+        <div className="w-full lg:col-span-4 md:col-span-12 col-span-8 mt-2 h-fit sticky top-20">
           <div className=" flex flex-col gap-5">
             <div className="flex flex-col gap-3">
               <div className="text-[30px] font-bold leading-9">
@@ -204,21 +204,24 @@ const Page = () => {
                   )}
                 </div>
               </div>
-              <div className="w-full flex flex-col gap-5 ">
-                <div className="">
-                  <div className="border py-5 flex items-center justify-center bg-[#191919] text-white text-[18px] font-bold rounded-[5px] cursor-pointer hover:bg-[#3b4047]">
-                    ADD TO CART
-                  </div>
-                </div>
-                <div className="w-full">
-                  <div className="flex items-center gap-5 border py-5 justify-center cursor-pointer ">
-                    <div className="text-[25px] font-bold">
-                      <FaRegHeart />
-                    </div>
-                    <div className="text-[18px] font-bold">ADD TO WISHLIST</div>
-                  </div>
-                </div>
-              </div>
+              <div className="w-full flex flex-col gap-4 sm:gap-5">
+      {/* Add to Cart Button */}
+      <div className="w-full">
+        <button className="w-full border py-4 sm:py-5 px-4 sm:px-6 flex items-center justify-center bg-[#191919] text-white text-base sm:text-lg md:text-xl font-bold rounded-md cursor-pointer transition duration-300 hover:bg-[#3b4047] min-h-[50px] sm:min-h-[60px]">
+          ADD TO CART
+        </button>
+      </div>
+
+      {/* Add to Wishlist Button */}
+      <div className="w-full">
+        <button className="w-full flex flex-wrap items-center justify-center gap-3 sm:gap-5 border py-4 sm:py-5 px-4 sm:px-6 cursor-pointer hover:bg-gray-100 transition duration-300 rounded-md min-h-[50px] sm:min-h-[60px]">
+          <span className="text-2xl sm:text-3xl">
+            <FaRegHeart />
+          </span>
+          <span className="text-base sm:text-lg md:text-xl font-bold text-center">ADD TO WISHLIST</span>
+        </button>
+      </div>
+    </div>
             </div>
 
             <div className="flex flex-col w-full gap-1">
