@@ -1,12 +1,13 @@
 import { CardDatas } from "@/constant/Products/Cards";
 import Image from "next/image";
+import Link from "next/link";
 
 const Cards = () => {
   return (
     <div className="w-full">
       <div className="grid grid-cols-2 gap-4 sm:gap-2 md:grid-cols-3 lg:grid-cols-4 xl:gap-5">
         {CardDatas.map((item, index) => (
-          <div key={index} className="flex flex-col overflow-hidden cursor-pointer ">
+          <Link href={"/productdetails/any"} key={index} className="flex flex-col overflow-hidden cursor-pointer">
             <div className="relative aspect-square w-full">
               <Image
                 src={item.img}
@@ -49,7 +50,7 @@ const Cards = () => {
                 </span>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </div>

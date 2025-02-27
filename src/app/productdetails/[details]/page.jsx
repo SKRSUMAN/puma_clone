@@ -7,6 +7,7 @@ import { RiRulerLine } from "react-icons/ri";
 import { IoChevronDownSharp } from "react-icons/io5";
 import { FaRegHeart } from "react-icons/fa";
 import { FaArrowRotateRight, FaTruckFast } from "react-icons/fa6";
+import Photos from "@/components/productDetails/Photos";
 
 const Page = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -53,9 +54,12 @@ const Page = () => {
         ))}
       </div>
 
-      <div className="grid grid-cols-12 gap-2">
-        <div className="border col-span-8">sdfdsf</div>
-        <div className="border col-span-4">
+      <div className="grid grid-cols-12 gap-5">
+        <div className="col-span-8 ">
+          <Photos />
+        </div>
+
+        <div className="col-span-4 mt-2">
           <div className=" flex flex-col gap-5">
             <div className="flex flex-col gap-3">
               <div className="text-[30px] font-bold leading-9">
@@ -237,7 +241,7 @@ const Page = () => {
                     className="w-83 h-15 px-4 border border-[#191919] rounded-[2px] focus:outline-none focus:ring-2 focus:ring-gray-500"
                   />
                 </div>
-                <div className="border w-33 h-15 flex items-center justify-center bg-[#191919] font-bold text-white text-[18px] rounded-[2px] hover:bg-[#3b4047]">
+                <div className="border w-33 h-15 flex items-center justify-center bg-[#191919] font-bold text-white text-[18px] rounded-[2px] cursor-pointer hover:bg-[#3b4047]">
                   {" "}
                   CHECK{" "}
                 </div>
@@ -259,8 +263,7 @@ const Page = () => {
                 </ul>
               </div>
 
-              <div>
-              </div>
+              <div></div>
               <div className="">
                 <button className="text-[15px] font-bold leading-4 border-b-2 cursor-pointer">
                   READ MORE
@@ -270,8 +273,21 @@ const Page = () => {
 
             <div className="flex flex-col gap-5">
               <div className="text-xl font-bold">Shipping and Returns</div>
-              <div className="text-[16px] font-normal text-[#191919]">Free return on all qualifying orders within 14 days of your order delivery date. Visit our <span className="border-b-2 leading-5 cursor-pointer border-grey-500 hover:border-[#d1c3af]">Return Policy</span> for more information.</div>
-              <div className="text-[16px] font-normal text-[#191919]">For any queries, please contact Customer Service on email at <span className="border-b-2 leading-5 cursor-pointer border-grey-500 hover:border-[#d1c3af]" >customercareindia@puma.com</span> , or send us a "Hi" on Whatsapp at 6364929121.</div>
+              <div className="text-[16px] font-normal text-[#191919]">
+                Free return on all qualifying orders within 14 days of your
+                order delivery date. Visit our{" "}
+                <span className="border-b-2 leading-5 cursor-pointer border-[#95a9ba] hover:border-[#d1c3af]">
+                  Return Policy
+                </span>{" "}
+                for more information.
+              </div>
+              <div className="text-[16px] font-normal text-[#191919]">
+                For any queries, please contact Customer Service on email at{" "}
+                <span className="border-b-2 leading-5 cursor-pointer border-[#95a9ba] hover:border-[#d1c3af]">
+                  customercareindia@puma.com
+                </span>{" "}
+                , or send us a "Hi" on Whatsapp at 6364929121.
+              </div>
             </div>
           </div>
         </div>

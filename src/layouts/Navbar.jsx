@@ -21,14 +21,14 @@ const Navbar = () => {
   };
 
   const menuItems = [
-    { name: "New", href: "/new", icon: <ElectricBoltIcon style={{ color: "#FFC83D", fontSize: "22px", paddingLeft: "2px" }} /> },
-    { name: "Men", href: "/men" },
-    { name: "Women", href: "/women" },
-    { name: "Sports", href: "/sports" },
-    { name: "Motorsports", href: "/motorsports" },
-    { name: "Collaborations", href: "/collaborations" },
-    { name: "Kids", href: "/kids" },
-    { name: "Outlet", href: "/outlet" },
+    { name: "New", href: "/products/new", icon: <ElectricBoltIcon style={{ color: "#FFC83D", fontSize: "22px", paddingLeft: "2px" }} /> },
+    { name: "Men", href: "/products/men" },
+    { name: "Women", href: "/products/women" },
+    { name: "Sports", href: "/products/sports" },
+    { name: "Motorsports", href: "/products/motorsports" },
+    { name: "Collaborations", href: "/products/collaborations" },
+    { name: "Kids", href: "/products/kids" },
+    { name: "Outlet", href: "/products/outlet" },
   ];
 
   return (

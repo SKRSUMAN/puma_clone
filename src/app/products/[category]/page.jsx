@@ -12,8 +12,14 @@ import Cards from "@/components/Products/Cards";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import Link from "next/link";
 import Desription from "@/components/Products/Desription";
+import { useParams } from "next/navigation";
 
 const Page = () => {
+
+  const params = useParams();
+
+  // console.log("paramas", params.category)
+
   const [open, setOpen] = React.useState(false);
   const [sortOption, setSortOption] = React.useState("");
 
@@ -36,7 +42,7 @@ const Page = () => {
         
         <span className="text-gray-400 text-[20px] hidden md:block">•</span>
         <ol className="hidden md:block">
-          <li className="text-[17px]">Men</li>
+          <li className="text-[17px]">{params.category}</li>
         </ol>
       </div>
 
