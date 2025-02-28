@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
 const Page = () => {
@@ -115,9 +116,9 @@ const Page = () => {
             <div className="border-b-3 border-[#bdc1c5] hover:border-[black] cursor-pointer text-sm font-bold">
               LOGIN WITH OTP
             </div>
-            <div className="border-b-3 border-[#bdc1c5] hover:border-[black] cursor-pointer text-sm font-bold">
+            <Link href={"/forget-password"} className="border-b-3 border-[#bdc1c5] hover:border-[black] cursor-pointer text-sm font-bold">
               FORGOTTEN YOUR PASSWORD?
-            </div>
+            </Link>
           </div>
         </div>
       </div>
