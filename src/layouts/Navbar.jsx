@@ -96,85 +96,79 @@ const Navbar = () => {
               <p>SEARCH</p>
             </button>
           </div>
-          <button className="cursor-pointer border border-transparent rounded-full transition-all p-3 hover:bg-[#404040]">
+          <Link href={"/signup"} className="cursor-pointer border border-transparent rounded-full transition-all p-3 hover:bg-[#404040]">
             <FaRegHeart size={20} />
-          </button>
+          </Link>
         </div>
 
         <div className="flex flex-row-reverse lg:flex-row lg:gap-3 gap-0">
-          <button className="cursor-pointer border border-transparent rounded-full transition-all p-3 hover:bg-[#404040] flex items-center">
+          <Link href={"/cart"} className="cursor-pointer border border-transparent rounded-full transition-all p-3 hover:bg-[#404040] flex items-center">
             <Badge badgeContent={2} color="error">
               <IoCartOutline size={25} />
             </Badge>
-          </button>
+          </Link>
           <Tooltip
-      title={
-        <div 
-          className="w-full flex flex-col gap-3" 
-          onMouseDown={(e) => e.stopPropagation()} // Prevents closing on inside click
-        >
-          {TooltipDatas.map((item, index) => (
-            <div key={index}>
-              <div className="text-lg sm:text-base flex justify-between items-center cursor-pointer">
-                <Link href={item.href}>{item.title}</Link>
-                {item.title === "Language" && (
-                  <span className="flex items-center gap-1">
-                    EN
-                    <img
-                      src="/flag-for-india-svgrepo-com.svg"
-                      alt="India Flag"
-                      className="w-7 h-7 sm:w-5 sm:h-5"
-                    />
-                  </span>
-                )}
+            title={
+              <div
+                className="w-full flex flex-col gap-3"
+                onMouseDown={(e) => e.stopPropagation()} // Prevents closing on inside click
+              >
+                {TooltipDatas.map((item, index) => (
+                  <div key={index}>
+                    <div className="text-lg sm:text-base flex justify-between items-center cursor-pointer">
+                      <Link href={item.href}>{item.title}</Link>
+                      {item.title === "Language" && (
+                        <span className="flex items-center gap-1">
+                          EN
+                          <img
+                            src="/flag-for-india-svgrepo-com.svg"
+                            alt="India Flag"
+                            className="w-7 h-7 sm:w-5 sm:h-5"
+                          />
+                        </span>
+                      )}
+                    </div>
+                    {index !== TooltipDatas.length - 1 && (
+                      <div className="border-b border-[#babdc1] mt-2"></div>
+                    )}
+                  </div>
+                ))}
+
+                <div className="flex flex-col gap-3 mt-3">
+                  <button className="border text-[16px] sm:text-[14px] bg-[#000000] hover:bg-[#3b4047] text-white py-3 sm:py-2 cursor-pointer">
+                    LOGIN
+                  </button>
+                  <button className="border text-[16px] sm:text-[14px] py-3 sm:py-2 cursor-pointer">
+                    JOIN US
+                  </button>
+                </div>
               </div>
-              {index !== TooltipDatas.length - 1 && (
-                <div className="border-b border-[#babdc1] mt-2"></div>
-              )}
-            </div>
-          ))}
-
-          <div className="flex flex-col gap-3 mt-3">
-            <button className="border text-[16px] sm:text-[14px] bg-[#000000] hover:bg-[#3b4047] text-white py-3 sm:py-2 cursor-pointer">
-              LOGIN
+            }
+            arrow
+            open={open}
+            onClose={handleToggle}
+            componentsProps={{
+              tooltip: {
+                style: {
+                  backgroundColor: "white",
+                  color: "black",
+                  fontSize: "14px",
+                  padding: "15px 20px",
+                  borderRadius: "6px",
+                  minWidth: "360px",
+                  maxWidth: "90vw",
+                },
+              },
+              arrow: {
+                style: { color: "white" },
+              },
+            }}>
+            <button
+              onClick={handleToggle}
+              className="cursor-pointer border border-transparent rounded-full transition-all p-3 sm:p-2 hover:bg-[#404040] flex items-center">
+              <PersonIcon fontSize="medium" />
             </button>
-            <button className="border text-[16px] sm:text-[14px] py-3 sm:py-2 cursor-pointer">
-              JOIN US
-            </button>
-          </div>
-        </div>
-      }
-      arrow
-      open={open}
-      onClose={handleToggle}
-      componentsProps={{
-        tooltip: {
-          style: {
-            backgroundColor: "white",
-            color: "black",
-            fontSize: "14px",
-            padding: "15px 20px",
-            borderRadius: "6px",
-            minWidth: "360px",
-            maxWidth: "90vw",
-          },
-        },
-        arrow: {
-          style: { color: "white" },
-        },
-      }}
-    >
-      <button
-        onClick={handleToggle}
-        className="cursor-pointer border border-transparent rounded-full transition-all p-3 sm:p-2 hover:bg-[#404040] flex items-center"
-      >
-        <PersonIcon fontSize="medium" />
-      </button>
-    </Tooltip>
-
-
-
-
+          </Tooltip>
         </div>
       </div>
 
