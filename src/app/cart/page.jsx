@@ -13,6 +13,7 @@ import { IoChevronDownSharp } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
 import Swipers from "@/components/Home/Swiper/Swipers";
 import PaymentPartners from "@/components/cart/PaymentPartners";
+import Link from "next/link";
 
 const Page = () => {
   const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -241,12 +242,10 @@ const Page = () => {
               </div>
               <div className="text-xl font-bold">₹24,072.20</div>
             </div>
-
-            <div>
-              <button className="w-full border text-lg font-bold text-white bg-[#181818] hover:bg-[#3b4047] rounded-[2px] py-4 cursor-pointer">
+              <Link href={"/checkout"} className="w-full border text-lg font-bold text-white bg-[#181818] hover:bg-[#3b4047] rounded-[2px] py-4 cursor-pointer text-center">
                 CHECKOUT
-              </button>
-            </div>
+              </Link>
+           
             <div className="text-[12px] font-normal">
               By continuing, I confirm that I have read and accept the {"  "}
               <span className="underline">
