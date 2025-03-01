@@ -83,8 +83,8 @@ const page = () => {
               </div>
               <div>
                 <form action="">
-                  <div>
-                    <div>
+                  <div className="flex justify-between items-center">
+                    <div className="flex gap-5">
                       <label htmlFor="">First Name</label>
                       <input
                         type="text"
