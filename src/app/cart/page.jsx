@@ -11,6 +11,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { IoChevronDownSharp } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
+import Swipers from "@/components/Home/Swiper/Swipers";
+import PaymentPartners from "@/components/cart/PaymentPartners";
 
 const Page = () => {
   const [openDropdownId, setOpenDropdownId] = useState(null);
@@ -33,6 +35,7 @@ const Page = () => {
   };
 
   return (
+    <>
     <div className="w-full lg:px-10 lg:py-10 px-5 py-5 flex flex-col gap-5">
       <div className="w-full text-[32px] font-bold">
         {" "}
@@ -254,7 +257,13 @@ const Page = () => {
           </div>
         </div>
       </div>
+      <div className="flex flex-col gap-5">
+        <div className="text-2xl font-bold">CUSTOMERS ALSO ORDERED</div>
+        <Swipers/>
+      </div>
     </div>
+    <div className="w-full bg-[#fafafa] mb-10"><PaymentPartners/></div>
+    </>
   );
 };
 
