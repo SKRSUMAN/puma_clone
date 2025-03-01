@@ -1,27 +1,77 @@
 "use client";
 
+import { useFormik } from "formik";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
+import * as Yup from "yup";
+
+const initialValues = {
+  name: "",
+  email: "",
+  password: "",
+};
 
 const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
+  const router = useRouter();
+
+  const validationSchema = Yup.object({
+    name: Yup.string()
+      .required("Name is required")
+      .min(2, "Name must be at least 2 characters long"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    password: Yup.string()
+      .required("Password is required")
+      .min(6, "Password must be at least 6 characters long"),
+  });
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: validationSchema,
+
+      onSubmit: (values) => {
+        console.log("Form Vlaues", values);
+        router.push("/login");
+      },
+    });
 
   return (
     <div className="w-full flex flex-col items-center justify-center px-10 my-10 ">
       <div className="w-full flex flex-col items-center justify-center">
-        <div className="w-full md:w-[70%] lg:text-5xl md:text-[4xl] text-3xl font-bold mb-15">My account</div>
+        <div className="w-full md:w-[70%] lg:text-5xl md:text-[4xl] text-3xl font-bold mb-15">
+          My account
+        </div>
         <div className="w-full md:w-[55%] lg:w-[35%] flex flex-col justify-center gap-5">
           <div className=" w-full flex flex-col items-center justify-center gap-3">
-            <div className="text-xl font-bold">Login / Join Us</div>
+            <div className="text-xl font-bold">Signup / Join Us</div>
             <div className="w-full border-b-2"></div>
             <div className="w-full text-[16px] font-normal mt-5">
-              Enter your email and password to log in
+              Enter your Name, Email and Password to Sign-up
             </div>
           </div>
 
           <div className="w-full flex flex-col items-center justify-center relative">
-            <form action="" className="w-full flex flex-col gap-5 ">
+            <form  onSubmit={handleSubmit} action="" className="w-full flex flex-col gap-5 ">
               <div className="w-full flex flex-col gap-2">
+                <label className="text-[12px] font-bold" htmlFor="">
+                  NAME
+                </label>
+                <input
+                  type="text"
+                  placeholder="Enter Your Full Name"
+                  className="border px-2 py-3"
+                  id="name"
+                  value={values.name}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                />
+                {touched.name && errors.name && ( <div className=" text-red-500 ">{errors.name}</div>)}
+              </div>
+              <div className="w-full flex flex-col gap-2 relative">
                 <label className="text-[12px] font-bold" htmlFor="">
                   EMAIL
                 </label>
@@ -32,7 +82,12 @@ const Page = () => {
                   type="text"
                   placeholder="Email"
                   className="border px-2 py-3"
+                  id="email"
+                  value={values.email}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                 {touched.email && errors.email && ( <div className=" text-red-500 ">{errors.email}</div>)}
               </div>
               <div className="w-full flex flex-col gap-2 relative">
                 <label className="text-[12px] font-bold" htmlFor="">
@@ -45,7 +100,12 @@ const Page = () => {
                   type={showPassword ? "text" : "password"}
                   placeholder="Password"
                   className="border px-2 py-3"
+                  id="password"
+                  value={values.password}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
                 />
+                 {touched.password && errors.password && ( <div className=" text-red-500 ">{errors.password}</div>)}
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
@@ -97,8 +157,10 @@ const Page = () => {
               </div>
 
               <div>
-                <button type="submit" className="w-full py-3 bg-[#bdc1c5] text-lg font-bold rounded-[2px] cursor-pointer">
-                  Login
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-[#bdc1c5] text-lg font-bold rounded-[2px] cursor-pointer">
+                  Signup
                 </button>
               </div>
             </form>
@@ -113,10 +175,14 @@ const Page = () => {
             </div>
           </div>
           <div className="flex flex-wrap gap-5">
-            <div className="border-b-3 border-[#bdc1c5] hover:border-[black] cursor-pointer text-sm font-bold">
-              LOGIN WITH OTP
-            </div>
-            <Link href={"/forget-password"} className="border-b-3 border-[#bdc1c5] hover:border-[black] cursor-pointer text-sm font-bold">
+            <Link
+              href={"/login"}
+              className="border-b-3 border-[#bdc1c5] hover:border-[black] cursor-pointer text-sm font-bold">
+              ALREADY HAVE AN ACCOUNT?
+            </Link>
+            <Link
+              href={"/forget-password"}
+              className="border-b-3 border-[#bdc1c5] hover:border-[black] cursor-pointer text-sm font-bold">
               FORGOTTEN YOUR PASSWORD?
             </Link>
           </div>
