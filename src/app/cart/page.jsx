@@ -33,31 +33,32 @@ const Page = () => {
   };
 
   return (
-    <div className="w-full px-10 py-10 flex flex-col gap-5">
+    <div className="w-full lg:px-10 lg:py-10 px-5 py-5 flex flex-col gap-5">
       <div className="w-full text-[32px] font-bold">
         {" "}
         My Shopping Cart{" "}
         <span className="text-[32px] font-bold text-[#6c6c6c]">(2)</span>
       </div>
-      <div className="w-full grid grid-cols-10 gap-10 ">
-        <div className="grid col-span-6">
+      <div className="w-full grid lg:grid-cols-10 grid-cols-5 gap-10 ">
+        <div className="grid lg:col-span-6 col-span-6">
           <div className="flex flex-col gap-5">
             {cartItemsDatas.map((items, index) => (
-              <div className="border border-[#e5e7eb] relative" key={index}>
+              <div className="border border-[#e5e7eb] " key={index}>
                 <div className=" m-5 flex gap-5">
-                  <div>
+                  <div className="h-full relative">
                     <Image
                       src={items.imageUrl}
                       alt="shoes"
                       width={250}
                       height={250}
                     />
+                     <div className="hidden absolute  bottom-1 border border-[#c4d477] sm:flex items-center justify-center rounded-full gap-1 px-2 py-1">
+                     <div className="text-[16px] font-bold text-[#4d7d04]"><FaCheckCircle/></div>
+                     <div className="text-[10px] font-bold text-[#4d7d04]">IN STOCK</div>
                   </div>
-                  <div className="absolute  bottom-6 border border-[#c4d477] flex items-center justify-center rounded-full gap-1 px-2 py-1">
-                    <div className="text-[16px] font-bold text-[#4d7d04]"><FaCheckCircle/></div>
-                    <div className="text-[10px] font-bold text-[#4d7d04]">IN STOCK</div>
+                   
                   </div>
-                  <div className="w-full flex justify-between">
+                  <div className="w-full md:flex flex-row justify-between gap-5">
                     <div className="flex flex-col gap-3">
                       <div className="text-xl font-bold">{items.name}</div>
                       <div>
@@ -119,7 +120,8 @@ const Page = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-col gap-5">
+
+                    <div className="flex flex-col items-start sm:flex md:flex-col  sm:justify-between md:justify-start sm:flex-row-reverse lg:gap-5 sm:gap-0 gap-5 md:my-0 my-5">
                       <div>
                         <div
                           className={`text-xl font-bold ${
@@ -148,7 +150,7 @@ const Page = () => {
             ))}
           </div>
         </div>
-        <div className="grid col-span-4">
+        <div className="w-full grid lg:col-span-4 col-span-6">
           <div className="w-full flex flex-col  gap-5">
             <div className="border border-[#dfe0e1] rounded-md flex gap-2 items-center justify-center text-[#17913a] py-2 ">
               <div className="text-[20px] font-bold">
