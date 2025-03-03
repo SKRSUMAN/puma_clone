@@ -84,15 +84,15 @@ const page = () => {
               <div>
                 <form action="">
                   <div className="flex justify-between items-center">
-                    <div className="flex gap-5">
-                      <label htmlFor="">First Name</label>
+                    <div className="flex flex-col gap-1">
+                      <label htmlFor="">FIRST NAME</label>
                       <input
                         type="text"
                         placeholder="First Name"
                         className="border"
                       />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                       <label htmlFor="">LAST NAME</label>
                       <input
                         type="text"
@@ -101,7 +101,7 @@ const page = () => {
                       />
                     </div>
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <label htmlFor="">PIN CODE</label>
                     <input
                       type="text"
@@ -109,7 +109,7 @@ const page = () => {
                       className="border"
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <label htmlFor="">ADDRESS LINE 1</label>
                     <input
                       type="text"
@@ -117,7 +117,7 @@ const page = () => {
                       className="border"
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <label htmlFor="">ADDRESS LINE 2</label>
                     <input
                       type="text"
@@ -125,12 +125,12 @@ const page = () => {
                       className="border"
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1">
                     <label htmlFor="">CITY</label>
                     <input type="text" placeholder="City" className="border" />
                   </div>
-                  <div>
-                    <div>
+                  <div className="flex justify-between">
+                    <div className="flex flex-col gap-1">
                       <label htmlFor="">STATE</label>
                       <input
                         type="text"
@@ -138,7 +138,7 @@ const page = () => {
                         className="border"
                       />
                     </div>
-                    <div>
+                    <div className="flex flex-col gap-1">
                       <label htmlFor="">STATE</label>
                       <input
                         type="text"
@@ -148,7 +148,7 @@ const page = () => {
                     </div>
                   </div>
                   <div>Enter Contact Info</div>
-                  <div>
+                  <div className="flex gap-1">
                     <div>
                       <label htmlFor="">EMAIL</label>
                       <input
