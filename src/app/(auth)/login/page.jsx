@@ -1,5 +1,7 @@
 "use client";
 
+import { useToast } from "@/context/toaster";
+import { authApi } from "@/mocks/auth";
 import { useFormik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,6 +17,14 @@ const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
+  const toastContext = useToast();
+
+  if (!toastContext) {
+    throw new Error("useToast must be used within a ToastProvider");
+  }
+
+  const {setAlert} = toastContext;
+
   const validationSchema = Yup.object({
     email: Yup.string()
       .email("Invalid email address")
@@ -29,9 +39,39 @@ const Page = () => {
       initialValues: initialValues,
       validationSchema: validationSchema,
 
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
         console.log("Login Values", values);
-        router.push("/");
+
+        const data = { username: values.email, password: values.password };
+
+        try {
+          const res = await authApi.login(data);
+          console.log("Login Page Data Response", res);
+
+          if (res?.data?.status === "SUCCESS") {
+            setAlert({
+              open: true,
+              message: "Login successful! Redirecting...",
+              severity: "success",
+            });
+            router.push("/");
+          } else {
+            // console.log(res.message);
+            setAlert({
+              open: true,
+              message: res?.message || "Login Failed!",
+              severity: "error",
+            });
+
+          }
+        } catch (error) {
+          console.log(error);
+          setAlert({
+            open: true,
+            message: "Something went wrong. Please try again later.",
+            severity: "error",
+          });
+        }
       },
     });
 
@@ -51,7 +91,10 @@ const Page = () => {
           </div>
 
           <div className="w-full flex flex-col items-center justify-center relative">
-            <form onSubmit={handleSubmit} action="" className="w-full flex flex-col gap-5 ">
+            <form
+              onSubmit={handleSubmit}
+              action=""
+              className="w-full flex flex-col gap-5 ">
               <div className="w-full flex flex-col gap-2">
                 <label className="text-[12px] font-bold" htmlFor="">
                   EMAIL
@@ -68,7 +111,9 @@ const Page = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {touched.email && errors.email && (<div className=" text-red-500 ">{errors.email}</div>)}
+                {touched.email && errors.email && (
+                  <div className=" text-red-500 ">{errors.email}</div>
+                )}
               </div>
               <div className="w-full flex flex-col gap-2 relative">
                 <label className="text-[12px] font-bold" htmlFor="">
@@ -86,8 +131,11 @@ const Page = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {touched.password && errors.password && (<div className=" text-red-500 ">{errors.password}</div>)}
+                {touched.password && errors.password && (
+                  <div className=" text-red-500 ">{errors.password}</div>
+                )}
                 <button
+                  onClick={() => setShowPassword(!showPassword)}
                   type="button"
                   className="absolute right-5 top-12 transform -translate-y-1/2 bg-white rounded-r-xl border-gray-300 cursor-pointer">
                   {showPassword ? (

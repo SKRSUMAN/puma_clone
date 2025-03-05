@@ -1,5 +1,7 @@
 "use client";
 
+import { useToast } from "@/context/toaster";
+import { authApi } from "@/mocks/auth";
 import { useFormik } from "formik";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -15,6 +17,14 @@ const initialValues = {
 const Page = () => {
   const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
+
+  const toastContext = useToast();
+
+  if (!toastContext) {
+    throw new Error("useToast must be used within a ToastProvider");
+  }
+
+  const { setAlert } = toastContext;
 
   const validationSchema = Yup.object({
     name: Yup.string()
@@ -33,9 +43,36 @@ const Page = () => {
       initialValues: initialValues,
       validationSchema: validationSchema,
 
-      onSubmit: (values) => {
+      onSubmit: async (values) => {
         console.log("Form Vlaues", values);
-        router.push("/login");
+
+        try {
+          const res = await authApi.register(values);
+          console.log("Signup Page data Response", res);
+
+          if (res.status === "SUCCESS") {
+            setAlert({
+              open: true,
+              message: "Register successful! Redirecting...",
+              severity: "success",
+            });
+            router.push("/login");
+          } else {
+            setAlert({
+              open: true,
+              message: res?.message || "Registration Failed!",
+              severity: "error",
+            });
+            console.log(res?.message);
+          }
+        } catch (error) {
+          console.log(error);
+          setAlert({
+            open: true,
+            message: "Something went wrong. Please try again later.",
+            severity: "error",
+          });
+        }
       },
     });
 
@@ -55,7 +92,10 @@ const Page = () => {
           </div>
 
           <div className="w-full flex flex-col items-center justify-center relative">
-            <form  onSubmit={handleSubmit} action="" className="w-full flex flex-col gap-5 ">
+            <form
+              onSubmit={handleSubmit}
+              action=""
+              className="w-full flex flex-col gap-5 ">
               <div className="w-full flex flex-col gap-2">
                 <label className="text-[12px] font-bold" htmlFor="">
                   NAME
@@ -69,7 +109,9 @@ const Page = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                {touched.name && errors.name && ( <div className=" text-red-500 ">{errors.name}</div>)}
+                {touched.name && errors.name && (
+                  <div className=" text-red-500 ">{errors.name}</div>
+                )}
               </div>
               <div className="w-full flex flex-col gap-2 relative">
                 <label className="text-[12px] font-bold" htmlFor="">
@@ -87,7 +129,9 @@ const Page = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                 {touched.email && errors.email && ( <div className=" text-red-500 ">{errors.email}</div>)}
+                {touched.email && errors.email && (
+                  <div className=" text-red-500 ">{errors.email}</div>
+                )}
               </div>
               <div className="w-full flex flex-col gap-2 relative">
                 <label className="text-[12px] font-bold" htmlFor="">
@@ -105,7 +149,9 @@ const Page = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-                 {touched.password && errors.password && ( <div className=" text-red-500 ">{errors.password}</div>)}
+                {touched.password && errors.password && (
+                  <div className=" text-red-500 ">{errors.password}</div>
+                )}
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}

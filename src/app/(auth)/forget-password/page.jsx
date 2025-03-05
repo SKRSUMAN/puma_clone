@@ -1,5 +1,6 @@
 "use client";
 
+import NewPassword from "@/components/ForgetPassword/NewPassword";
 import { useState } from "react";
 import OtpInput from "react-otp-input";
 
@@ -10,6 +11,7 @@ const Page = () => {
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showOtpField, setShowOtpField] = useState(false);
+  const [showNewPasswordField, setShowNewPasswordField] = useState(false);
 
   const handleEmailSubmit = (e) => {
     e.preventDefault();
@@ -37,6 +39,9 @@ const Page = () => {
       if (otp === "123456") {
         setIsVerified(true);
         setError("");
+        setTimeout(() => {
+          handleMessage();
+        }, 3000);
       } else {
         throw new Error("Invalid OTP code");
       }
@@ -46,6 +51,13 @@ const Page = () => {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleMessage = () => {
+    setTimeout(() => {
+      setIsVerified(false);
+      setShowNewPasswordField(true);
+    }, 3000);
   };
 
   return (
@@ -112,8 +124,8 @@ const Page = () => {
                       disabled:opacity-50 disabled:cursor-not-allowed
                       border-gray-300
                       w-[30px] h-[30px] sm:w-[45px] sm:h-[45px] md:w-[50px] md:h-[50px] lg:w-[55px] lg:h-[55px]`}
-                  aria-label={`OTP digit ${index + 1}`}
-              style={{width:"40px" , height:"40px"}}
+                    aria-label={`OTP digit ${index + 1}`}
+                    style={{ width: "40px", height: "40px" }}
                     onPaste={(e) => {
                       e.preventDefault();
                       const pastedData = e.clipboardData.getData("Text").trim();
@@ -179,6 +191,9 @@ const Page = () => {
                 <span>Successfully verified!</span>
               </div>
             )}
+
+            
+           
             <p className="text-sm text-gray-500 mt-4 text-center">
               Didn't receive code?{" "}
               <button
@@ -188,7 +203,9 @@ const Page = () => {
                 Resend OTP
               </button>
             </p>
+            {showNewPasswordField && (<NewPassword />)}
           </div>
+          
         )}
       </div>
     </div>
