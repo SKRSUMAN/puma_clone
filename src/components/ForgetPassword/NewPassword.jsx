@@ -2,12 +2,13 @@
 
 import React, { useState } from "react";
 
-const NewPassword = () => {
+const NewPassword = ({setPassword}) => {
 const [showPassword, setShowPassword] = useState(false);
 
+
   return (
-    <div className="w-full py-5">
-      <div className="w-full flex flex-col items-center justify-center gap-5">
+    <div className="w-full py-2">
+      <div className="w-full flex flex-col items-start gap-5">
         <div>
           <label className="text-2xl font-bold" htmlFor="">
             Enter Your New Password
@@ -16,6 +17,7 @@ const [showPassword, setShowPassword] = useState(false);
         <div className="w-full flex flex-col gap-2 relative">
                 <input
                   type={showPassword ? "text" : "password"}
+                  onChange={(e) => setPassword(e.target.value)}
                   placeholder="Password"
                   className="border px-2 py-3"
                   id="password"

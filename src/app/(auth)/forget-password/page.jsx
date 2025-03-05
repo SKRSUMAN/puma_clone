@@ -1,63 +1,91 @@
 "use client";
 
 import NewPassword from "@/components/ForgetPassword/NewPassword";
+import { useToast } from "@/context/toaster";
+import { authApi } from "@/mocks/auth";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import OtpInput from "react-otp-input";
 
 const Page = () => {
   const [email, setEmail] = useState("");
   const [otp, setOtp] = useState("");
-  const [isVerified, setIsVerified] = useState(false);
-  const [error, setError] = useState("");
-  const [isSubmitting, setIsSubmitting] = useState(false);
   const [showOtpField, setShowOtpField] = useState(false);
-  const [showNewPasswordField, setShowNewPasswordField] = useState(false);
+  const [password, setPassword] = useState("");
 
-  const handleEmailSubmit = (e) => {
+  const router = useRouter();
+
+  const toastContext = useToast();
+
+  if (!toastContext) {
+    throw new Error("useToast must be used within a ToastProvider");
+  }
+
+  const { setAlert } = toastContext;
+
+  const handleEmailSubmit = async (e) => {
     e.preventDefault();
-    if (!email) {
-      setError("Please enter your email.");
-      return;
-    }
-    setError("");
-    setShowOtpField(true);
-  };
 
-  const handleClear = () => {
-    setOtp("");
-    setError("");
-    setIsVerified(false);
+    // const data = {'email':email}
+
+    try {
+      const res = await authApi.forgetPassword({ email: email });
+      console.log("Forgot Password Page Response", res);
+
+      if (res?.data?.status === "SUCCESS") {
+        setAlert({
+          open: true,
+          message: "Otp Send successful! Redirecting...",
+          severity: "success",
+        });
+        setShowOtpField(true);
+      } else {
+        setAlert({
+          open: true,
+          message: res?.data.status || "Otp send Failed!",
+          severity: "error",
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      setAlert({
+        open: true,
+        message: "Something went wrong. Please try again later.",
+        severity: "error",
+      });
+    }
   };
 
   const handleVerify = async (e) => {
     e.preventDefault();
-    setError("");
-    setIsSubmitting(true);
+
+    const data = { code: otp, newPassword: password };
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      if (otp === "123456") {
-        setIsVerified(true);
-        setError("");
-        setTimeout(() => {
-          handleMessage();
-        }, 3000);
+      const res = await authApi.resetPassword(data);
+      console.log("Reset Password page Response", res);
+      if (res?.data?.status === "SUCCESS") {
+        router.push("/login");
+        setAlert({
+          open: true,
+          message: "Password Change successful! Redirecting...",
+          severity: "success",
+        });
       } else {
-        throw new Error("Invalid OTP code");
+        setAlert({
+          open: true,
+          message: res?.data?.message || "Otp send Failed!",
+          severity: "error",
+        });
       }
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Verification failed");
-      setIsVerified(false);
-    } finally {
-      setIsSubmitting(false);
+    } catch (error) {
+      console.log(error);
+      setAlert({
+        open: true,
+        message: "Something went wrong. Please try again later.",
+        severity: "error",
+      });
     }
-  };
-
-  const handleMessage = () => {
-    setTimeout(() => {
-      setIsVerified(false);
-      setShowNewPasswordField(true);
-    }, 3000);
   };
 
   return (
@@ -73,16 +101,21 @@ const Page = () => {
               <div className="text-xl font-bold">Forgotten your password?</div>
               <div className="w-full border-b-2"></div>
               <div className="w-full text-[16px] font-normal mt-5">
-                Please provide your account email address to receive an email to reset your password.
+                Please provide your account email address to receive an email to
+                reset your password.
               </div>
             </div>
 
             {/* Email Input Section */}
             <div className="w-full flex flex-col items-center justify-center relative">
-              <form onSubmit={handleEmailSubmit} className="w-full flex flex-col gap-5">
+              <form
+                onSubmit={handleEmailSubmit}
+                className="w-full flex flex-col gap-5">
                 <div className="w-full flex flex-col gap-2 relative">
                   <label className="text-[12px] font-bold">EMAIL</label>
-                  <span className="text-[20px] text-red-700 absolute top-0 left-14">*</span>
+                  <span className="text-[20px] text-red-700 absolute top-0 left-14">
+                    *
+                  </span>
                   <input
                     type="email"
                     value={email}
@@ -94,8 +127,7 @@ const Page = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full py-3 bg-[#191919] hover:bg-[#3b4047] text-lg font-bold rounded-[2px] cursor-pointer text-white"
-                >
+                  className="w-full py-3 bg-[#191919] hover:bg-[#3b4047] text-lg font-bold rounded-[2px] cursor-pointer text-white">
                   Submit
                 </button>
               </form>
@@ -103,9 +135,13 @@ const Page = () => {
           </>
         ) : (
           // OTP input section
-          <div className="flex flex-col items-center space-y-4 w-full max-w-md">
-            <h2 className="text-xl font-semibold text-gray-800 mb-4">Enter Verification Code</h2>
-            <form onSubmit={handleVerify} className="w-full flex flex-col items-center">
+          <div className="flex flex-col items-start w-full max-w-md">
+            <h2 className="text-xl font-semibold text-gray-800 mb-4">
+              Enter Verification Code
+            </h2>
+            <form
+              onSubmit={handleVerify}
+              className="w-full flex flex-col items-start">
               <OtpInput
                 value={otp}
                 onChange={setOtp}
@@ -135,77 +171,34 @@ const Page = () => {
                     }}
                   />
                 )}
-                containerStyle="flex justify-center gap-2 mb-4"
+                containerStyle="flex items-center gap-2 mb-2"
               />
-              <div className="flex gap-4 mt-4">
-                <button
-                  type="button"
-                  onClick={handleClear}
-                  className="px-6 py-2 bg-gray-200 text-gray-700 font-semibold rounded-lg
-                      shadow-md hover:bg-gray-300 transition duration-200
-                      focus:outline-none focus:ring-2 focus:ring-gray-400"
-                >
-                  Clear
-                </button>
-                <button
-                  type="submit"
-                  disabled={otp.length < 6 || isSubmitting}
-                  className="px-6 py-2 bg-blue-600 text-white font-semibold rounded-lg
-                      shadow-md hover:bg-blue-700 transition duration-200
-                      disabled:opacity-50 disabled:cursor-not-allowed
-                      focus:outline-none focus:ring-2 focus:ring-blue-400"
-                >
-                  {isSubmitting ? (
-                    <span className="flex items-center">
-                      <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
-                        <circle
-                          className="opacity-25"
-                          cx="12"
-                          cy="12"
-                          r="10"
-                          stroke="currentColor"
-                          strokeWidth="4"
-                          fill="none"
-                        />
-                        <path
-                          className="opacity-75"
-                          fill="currentColor"
-                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                        />
-                      </svg>
-                      Verifying...
-                    </span>
-                  ) : (
-                    "Verify Code"
-                  )}
-                </button>
+
+              <div className="flex mt-2 "></div>
+              <NewPassword setPassword={setPassword} />
+
+              <div className="w-full flex flex-col items-center">
+                <div>
+                  <p className="text-sm text-gray-500 mt-4 text-center">
+                    Didn't receive code?{" "}
+                    <button
+                      className="text-blue-600 hover:text-blue-800 font-medium"
+                      onClick={() => setShowOtpField(false)}>
+                      Resend OTP
+                    </button>
+                  </p>
+                </div>
+
+                <div className="mt-5">
+                  <button
+                    className="text-white text-lg font-bold py-3 bg-[#127a12] rounded-[2px] px-6 cursor-pointer hover:bg-[#68ba68]"
+                    type="submit">
+                    Change Password
+                  </button>
+                </div>
               </div>
             </form>
-            {error && (
-              <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-lg flex items-center gap-2">
-                <span>{error}</span>
-              </div>
-            )}
-            {isVerified && (
-              <div className="mt-4 p-3 bg-green-100 text-green-700 rounded-lg flex items-center gap-2">
-                <span>Successfully verified!</span>
-              </div>
-            )}
-
-            
-           
-            <p className="text-sm text-gray-500 mt-4 text-center">
-              Didn't receive code?{" "}
-              <button
-                className="text-blue-600 hover:text-blue-800 font-medium"
-                onClick={() => setShowOtpField(false)}
-              >
-                Resend OTP
-              </button>
-            </p>
-            {showNewPasswordField && (<NewPassword />)}
           </div>
-          
         )}
       </div>
     </div>

@@ -59,7 +59,7 @@ const Page = () => {
             // console.log(res.message);
             setAlert({
               open: true,
-              message: res?.message || "Login Failed!",
+              message: res?.data?.message || "Login Failed!",
               severity: "error",
             });
 

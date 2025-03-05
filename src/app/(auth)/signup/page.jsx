@@ -50,7 +50,7 @@ const Page = () => {
           const res = await authApi.register(values);
           console.log("Signup Page data Response", res);
 
-          if (res.status === "SUCCESS") {
+          if (res?.data?.status === "SUCCESS") {
             setAlert({
               open: true,
               message: "Register successful! Redirecting...",
@@ -60,10 +60,9 @@ const Page = () => {
           } else {
             setAlert({
               open: true,
-              message: res?.message || "Registration Failed!",
+              message: res?.data?.message || "Registration Failed!",
               severity: "error",
             });
-            console.log(res?.message);
           }
         } catch (error) {
           console.log(error);
