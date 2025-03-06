@@ -40,7 +40,7 @@ const Page = () => {
       validationSchema: validationSchema,
 
       onSubmit: async (values) => {
-        console.log("Login Values", values);
+        // console.log("Login Values", values);
 
         const data = { username: values.email, password: values.password };
 

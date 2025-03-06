@@ -44,7 +44,7 @@ const Page = () => {
       validationSchema: validationSchema,
 
       onSubmit: async (values) => {
-        console.log("Form Vlaues", values);
+        // console.log("Form Vlaues", values);
 
         try {
           const res = await authApi.register(values);

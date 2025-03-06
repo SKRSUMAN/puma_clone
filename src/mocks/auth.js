@@ -7,8 +7,8 @@ class AuthApi {
         `${process.env.NEXT_PUBLIC_HOST}/auth/register`,
         data
       );
-      console.log("Register Api Response", res)
-        return res;
+      console.log("Register Api Response", res);
+      return res;
     } catch (error) {
       console.log(error);
       return error.response;
@@ -23,9 +23,9 @@ class AuthApi {
         data
       );
       console.log("Login Api Response", res);
-        localStorage.setItem("acess Token", res?.data?.data?.token);
-        localStorage.setItem("userId", res?.data?.data?.id);
-        return res;
+      localStorage.setItem("access Token", res?.data?.data?.token);
+      localStorage.setItem("userId", res?.data?.data?.id);
+      return res;
       // console.log("Acess Token",res?.data?.data?.token)
       // console.log("Acess ID",res?.data?.data?.id)
     } catch (error) {
@@ -33,30 +33,52 @@ class AuthApi {
     }
   }
 
-  async forgetPassword(data){
+  async forgetPassword(data) {
     try {
-        const res = await axios.post(`${process.env.NEXT_PUBLIC_HOST}/auth/reset-password-otp`,data);
-        console.log("Forget Password Api Response", res);
-        return res;
-        
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_HOST}/auth/reset-password-otp`,
+        data
+      );
+      console.log("Forget Password Api Response", res);
+      return res;
     } catch (error) {
-        console.log(error)
-        return error.response;
+      console.log(error);
+      return error.response;
     }
   }
 
-  async resetPassword(data){
-    console.log("Mocks data", data)
+  async resetPassword(data) {
+    console.log("Mocks data", data);
     try {
-       
-        const res = await axios.put(`${process.env.NEXT_PUBLIC_HOST}/auth/reset-password`,data)
-        console.log("Reset Password Api Response", res);
-        return res;
-        
+      const res = await axios.put(
+        `${process.env.NEXT_PUBLIC_HOST}/auth/reset-password`,
+        data
+      );
+      console.log("Reset Password Api Response", res);
+      return res;
     } catch (error) {
-        console.log(error)
-        return error.response;
-        
+      console.log(error);
+      return error.response;
+    }
+  }
+
+  async logout(data) {
+    console.log("Logout Mocks data", data);
+    try {
+      const res = await axios.post(
+        `${process.env.NEXT_PUBLIC_HOST}/auth/logout`,
+        data,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("access Token")}`,
+          },
+        }
+      );
+      console.log("Logout Api Response", res);
+      return res;
+    } catch (error) {
+      console.log(error);
+      return error.response;
     }
   }
 }
