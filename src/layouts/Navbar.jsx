@@ -21,6 +21,7 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [token, setToken] = useState(null);
   const profileButtonRef = useRef(null);
+  const tooltipRef = useRef(null);
 
   const storedToken = localStorage.getItem("access Token");
 
