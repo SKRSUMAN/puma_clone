@@ -72,7 +72,7 @@ const Navbar = () => {
       });
     }
   };
-  
+
   // Click outside handler
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -120,6 +120,8 @@ const Navbar = () => {
     { name: "Kids", href: "/products/kids" },
     { name: "Outlet", href: "/products/outlet" },
   ];
+
+  console.log("ToolTip Data",TooltipDatas)
 
   return (
     <nav className="sticky top-0 left-0 right-0 z-[1000] bg-[#181818] text-white w-full h-20 flex justify-between items-center px-4 lg:px-10">

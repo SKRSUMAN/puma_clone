@@ -7,7 +7,7 @@ class AuthApi {
         `${process.env.NEXT_PUBLIC_HOST}/auth/register`,
         data
       );
-      console.log("Register Api Response", res);
+      // console.log("Register Api Response", res);
       return res;
     } catch (error) {
       console.log(error);
@@ -16,7 +16,7 @@ class AuthApi {
   }
 
   async login(data) {
-    console.log("Mocks Data :", data);
+    // console.log("Mocks Data :", data);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_HOST}/auth/login`,
@@ -39,7 +39,7 @@ class AuthApi {
         `${process.env.NEXT_PUBLIC_HOST}/auth/reset-password-otp`,
         data
       );
-      console.log("Forget Password Api Response", res);
+      // console.log("Forget Password Api Response", res);
       return res;
     } catch (error) {
       console.log(error);
@@ -48,13 +48,13 @@ class AuthApi {
   }
 
   async resetPassword(data) {
-    console.log("Mocks data", data);
+    // console.log("Mocks data", data);
     try {
       const res = await axios.put(
         `${process.env.NEXT_PUBLIC_HOST}/auth/reset-password`,
         data
       );
-      console.log("Reset Password Api Response", res);
+      // console.log("Reset Password Api Response", res);
       return res;
     } catch (error) {
       console.log(error);
@@ -63,7 +63,7 @@ class AuthApi {
   }
 
   async logout(data) {
-    console.log("Logout Mocks data", data);
+    // console.log("Logout Mocks data", data);
     try {
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_HOST}/auth/logout`,
@@ -74,7 +74,7 @@ class AuthApi {
           },
         }
       );
-      console.log("Logout Api Response", res);
+      // console.log("Logout Api Response", res);
       return res;
     } catch (error) {
       console.log(error);
