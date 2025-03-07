@@ -1,10 +1,15 @@
+"use client"
+
 import Swipers from "@/components/Home/Swiper/Swipers";
 import Cards from "@/components/Products/Cards";
 import { cardDatas } from "@/constant/Accounts/card";
 import { menuItems } from "@/constant/Accounts/MenuData";
+import Link from "next/link";
 import React from "react";
 
+
 const page = () => {
+
   return (
     <div className="w-full flex h-full ">
       <div className="lg:max-w-[300px] w-full bg-[#f6f7f8] py-12 md:px-8 px-0">
@@ -13,12 +18,12 @@ const page = () => {
             <div
               key={index}
               className="w-full flex flex-col items-center justify-center">
-              <div
+              <Link  href={items.path}
                 className={`w-full flex items-center gap-5 p-5 hover:bg-[#dfe0e1] cursor-pointer 
               ${index === 0 ? "border-l-2 bg-white" : ""}`}>
                 <div className="text-[23px] font-bold">{items.icon}</div>
                 <div className="text-[16px] font-bold">{items.name}</div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

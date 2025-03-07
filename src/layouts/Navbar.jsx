@@ -14,6 +14,7 @@ import DropdownMenu from "@/components/Navbar/DropdownMenu";
 import { TooltipDatas } from "@/constant/Navbar/TooltipData";
 import { authApi } from "@/mocks/auth";
 import { useToast } from "@/context/toaster";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const [search, setSearch] = useState(false);
@@ -21,7 +22,8 @@ const Navbar = () => {
   const [open, setOpen] = useState(false);
   const [token, setToken] = useState(null);
   const profileButtonRef = useRef(null);
-  const tooltipRef = useRef(null);
+
+  const router = useRouter();
 
   const storedToken = localStorage.getItem("access Token");
 
@@ -51,7 +53,9 @@ const Navbar = () => {
       if (res?.data?.status === "SUCCESS") {
         setToken(null);
         localStorage.removeItem("userId");
-        localStorage.removeItem('access Token')
+        localStorage.removeItem("access Token");
+        // Redirect logic after logout
+       router.push("/")
         setAlert({
           open: true,
           message: res?.data?.message,
@@ -122,7 +126,7 @@ const Navbar = () => {
     { name: "Outlet", href: "/products/outlet" },
   ];
 
-  console.log("ToolTip Data",TooltipDatas)
+  console.log("ToolTip Data", TooltipDatas);
 
   return (
     <nav className="sticky top-0 left-0 right-0 z-[1000] bg-[#181818] text-white w-full h-20 flex justify-between items-center px-4 lg:px-10">
@@ -196,7 +200,9 @@ const Navbar = () => {
                   <div key={index}>
                     <div className="flex justify-between items-center py-1">
                       <Link
-                        href={item.href}
+                        href={
+                          token ? "/account" : item.href
+                        }
                         onClick={handleLinkClick}
                         className="hover:text-[#8a7350] transition-colors w-full text-[16px] font-normal">
                         {item.title}
@@ -222,10 +228,9 @@ const Navbar = () => {
                   <div className="flex flex-col gap-3 mt-2">
                     <button
                       onClick={() => {
-                        handleLogout()
-                        handleLinkClick()
+                        handleLogout();
+                        handleLinkClick();
                       }}
-                      
                       className="bg-black text-white py-2 text-center hover:bg-[#3b4047] transition-colors cursor-pointer text-[16px] font-bold">
                       LOGOUT
                     </button>
