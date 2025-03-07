@@ -12,11 +12,9 @@ const page = () => {
     const path = usePathname();
     // console.log("path",path)
 
-
-
   return (
-    <div className="w-full border">
-      <div className="w-[70%] m-auto flex flex-col my-10 gap-5">
+    <div className="w-full">
+      <div className="lg:w-[70%] w-[95%] m-auto flex flex-col my-10 gap-5">
       <div className="w-full text-black">
       <Link href="/" className="font-bold">Home</Link>
       <span className="mx-1 text-gray-500"> • </span>
