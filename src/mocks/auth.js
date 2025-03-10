@@ -7,7 +7,7 @@ class AuthApi {
         `${process.env.NEXT_PUBLIC_HOST}/auth/register`,
         data
       );
-      // console.log("Register Api Response", res);
+      console.log("Register Api Response", res);
       return res;
     } catch (error) {
       console.log(error);
