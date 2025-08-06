@@ -28,5 +28,5 @@ jobs:
     - run: |
        cat <<EOT > ${{ github.workspace }}/.env
         NEXT_PUBLIC_HOST = http://localhost:5000/userapp
-        EOT
+       EOT
     - run: npm run build
