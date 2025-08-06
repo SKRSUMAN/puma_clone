@@ -25,4 +25,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
     - run: npm i --force
+    - run: |
+       cat <<EOT > ${{ github.workspace }}/.env
+        NEXT_PUBLIC_HOST = http://localhost:5000/userapp
+        EOT
     - run: npm run build
