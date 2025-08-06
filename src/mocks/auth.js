@@ -23,8 +23,10 @@ class AuthApi {
         data
       );
       console.log("Login Api Response", res);
-      localStorage.setItem("access Token", res?.data?.data?.token);
-      localStorage.setItem("userId", res?.data?.data?.id);
+      if (typeof window !== "undefined") {
+        localStorage.setItem("access Token", res?.data?.data?.token);
+        localStorage.setItem("userId", res?.data?.data?.id);
+      }
       return res;
       // console.log("Acess Token",res?.data?.data?.token)
       // console.log("Acess ID",res?.data?.data?.id)
@@ -65,12 +67,13 @@ class AuthApi {
   async logout(data) {
     // console.log("Logout Mocks data", data);
     try {
+      const token = typeof window !== "undefined" ? localStorage.getItem("access Token") : null;
       const res = await axios.post(
         `${process.env.NEXT_PUBLIC_HOST}/auth/logout`,
         data,
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("access Token")}`,
+            Authorization: `Bearer ${token}`,
           },
         }
       );

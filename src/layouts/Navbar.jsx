@@ -25,7 +25,7 @@ const Navbar = () => {
 
   const router = useRouter();
 
-  const storedToken = localStorage.getItem("access Token");
+  const storedToken = typeof window !== "undefined" ? localStorage.getItem("access Token") : null;
 
   const toastContext = useToast();
 
@@ -43,17 +43,21 @@ const Navbar = () => {
 
   // console.log("Token", token);
 
+  
   const handleLogout = async () => {
     try {
+      const userId = typeof window !== "undefined" ? localStorage.getItem("userId") : null;
       const res = await authApi.logout({
-        user: localStorage.getItem("userId"),
+        user: userId,
       });
       console.log("Logout page Response", res);
 
       if (res?.data?.status === "SUCCESS") {
         setToken(null);
-        localStorage.removeItem("userId");
-        localStorage.removeItem("access Token");
+        if (typeof window !== "undefined") {
+          localStorage.removeItem("userId");
+          localStorage.removeItem("access Token");
+        }
         // Redirect logic after logout
        router.push("/")
         setAlert({
