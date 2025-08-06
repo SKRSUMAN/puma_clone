@@ -16,7 +16,7 @@ import React from 'react'
 const page = () => {
   return (
     <div className=''>
-      <HeroSection/>
+      // <HeroSection/>
       <Block1/>
       <Block2/>
       <Block3/>
