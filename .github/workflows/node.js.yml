@@ -30,3 +30,4 @@ jobs:
         NEXT_PUBLIC_HOST = http://localhost:5000/userapp
        EOT
     - run: npm run build
+    - run: pm2 restart frontedn
