@@ -15,7 +15,7 @@ const Block2 = () => {
         "
       >
         <div className="hidden sm:block">
-          <h1 className="text-[40px] font-bold text-white">WELCOME TO DREAMLAND Suman</h1>
+{/*           <h1 className="text-[40px] font-bold text-white">WELCOME TO DREAMLAND Suman</h1> */}
           <div className="text-white flex">
             <div className="text-[25px]">PUMA x AC MILAN x OFF-WHITE</div>
             <div className="text-[14px] mt-[4px]">TM</div>
