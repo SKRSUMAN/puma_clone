@@ -27,7 +27,7 @@ jobs:
     - run: npm install --force
     - run: |
        cat <<EOT > ${{ github.workspace }}/.env
-         REACT_APP_API= https://api.app.perso-base.com/api/
+         REACT_APP_API= ${{secrets.REACT_APP_API}}
         EOT
     - run: npm run build --if-present
     - run: pm2 restart Next
